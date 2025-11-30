@@ -1,21 +1,18 @@
-Module 01 — Intake & Setup
+# Module 1
 
-## Change Log
-- v1.0
+## Logic & Steps
+1. **User Input Verification**  
+   - Check for the provided section list, summary level, and length preference.  
+   - Make sure all paper sections are present and clearly labeled.  
 
-## Purpose
-Normalize inputs, detect flags, prep chunking.
+2. **Section Detection**  
+   - Read the academic paper and identify all labeled sections.  
+   - Find any missing or empty sections and flag those with fewer than 50 words.  
 
-## Inputs
-- Raw paper text; optional ordered section list.
+3. **Preparation**  
+   - Store the user's chosen summary level and length settings for the next steps.  
+   - Get the parsed content ready for summarization.  
 
-## Outputs
-- `sections[]`: {name, text, word_count, flags ∈ {missing, empty, short}}
-- `chunks[]` (optional), `issues[]`
-
-## Steps
-1) Normalize section list (infer if absent).
-2) Split by headings/heuristics; compute `word_count`.
-3) Flags: `missing` (listed but absent), `empty` (len 0), `short` (<50 words).
-4) Create `chunks[]` for long sections; record `issues[]`.
-
+## Output  
+- Move to the Section Loop only after all validation checks are complete.  
+- If any issues are found, alert the user and wait for corrections.
