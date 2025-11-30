@@ -1,1 +1,19 @@
+# Module 05 — Citation Extractor
 
+## Change Log
+- v1.0
+
+## Purpose
+Extract explicit citations and map to sections.
+
+## Inputs
+- `sections[]`
+
+## Outputs
+- `citations[]`: {section, citation_text, local_anchor}
+- `unresolved_refs[]`: {section, stub}
+
+## Steps
+1) Detect patterns: (Author, Year), [1], [12–14], DOI/arXiv, footnotes.
+2) Normalize/dedupe; keep exact text.
+3) Map to section; record unresolved stubs.
