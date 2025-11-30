@@ -1,1 +1,27 @@
+# Module 03 — Guardrails
 
+## Change Log
+- v1.0; v1.1 add `evidence_mode=strict` + standardized warnings
+
+## Purpose
+Evidence control, warnings, long-paper handling.
+
+## Inputs
+- Section records; `evidence_mode`.
+
+## Outputs
+- Policies/helpers; `warnings[]`.
+
+## Policies
+- **Evidence:**
+  - default: close to text; no speculation.
+  - **strict:** only explicit claims/results; else:  
+    `"Insufficient source detail to summarize this section in strict evidence mode."`
+- **Standardized warnings:**
+  - Missing/empty: `"Section skipped: no usable text was provided."`
+  - Short (<50 words): `"Section very short: summary may be incomplete."`
+- **Long papers:** deterministic chunking; keep provenance.
+
+## Helpers
+- `apply_evidence_policy(text, mode)`
+- `emit_warning(section, type)`
