@@ -1,1 +1,16 @@
+# path: modules/06_equation_explainer.md
+# Module 06 — Equation Explainer
+
+## Change Log
+- v1.0
+
+## Purpose
+Explain equations/symbols briefly and in context.
+
+## Inputs
+- `sections[]`, `audience`
+
+## Outputs
+- `equation_notes[]`: {section, symbol/equation, short explanation, refs}
+
 
