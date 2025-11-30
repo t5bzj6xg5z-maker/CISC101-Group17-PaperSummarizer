@@ -1,41 +1,17 @@
-Module 03: Guardrails
-
-Change Log
-- Added an evidence_mode variable for stricter evidence requirements.
-- Set up standard warnings for missing, empty, or very short sections.
-- Improved logic to catch hallucinations.
+Module 04: Rendering & Refinement
 
 Logic & Steps
+1. Combined Summary Generation
+Bring together all the section summaries into one clear, flowing summary (about 100–300 words). Cut out anything repetitive. Keep the focus on the main findings and make sure the story makes sense from start to finish.
 
-1. Evidence Mode Variable
-Set evidence_mode to either "standard" or "strict."
+2. Formatting Consistency
+Put everything together in the right order using Markdown. Stick to the same tone, summary level, and use the same terms throughout the document.
 
-2. Strict Evidence Mode
-When evidence_mode is "strict":
-- The summarizer sticks to facts found in the original section—no guesses, no outside info.
-- If there isn’t enough detail, just say:
-  "The source text does not provide enough detail to summarize this section in strict evidence mode."
-
-3. Section Validation
-
-If the section is missing or empty:
-- Say:
-  "Section skipped: no usable text was provided."
-- Don’t try to summarize.
-
-If the section is under 50 words:
-- Go ahead and summarize, but add this warning:
-  "Section very short: summary may be incomplete."
-
-4. Blocking Hallucinations
-- Check that every summary only pulls from the original section.
-- Don’t add made-up facts, guesses, or outside sources.
-
-5. Enforcing Accuracy
-- Match each summary sentence to the original text.
-- Cut or change anything that doesn’t line up.
+3. Glossary Compilation
+Pick out important terms or abbreviations from the paper. Define them so everything stays clear.
 
 Output
-- Only show summaries that pass these checks.
-- Add standard warning messages as needed.
-- If strict mode rules are broken, swap the summary with the proper explanation.
+- Final Paper Summary
+- Complete Set of Section Summaries
+- Full Combined Summary (100–300 words)
+- Glossary of Key Terms
