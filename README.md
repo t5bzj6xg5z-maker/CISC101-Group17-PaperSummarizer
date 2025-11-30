@@ -5,22 +5,36 @@ Group Members:
 - Emmett
 - Nathan
 
-## What this repo has
-- `system_prompt.md` + `modules/` (01–06) — already structured.
+Research Paper Summarizer
 
-## How to run
-1) Open your LLM and set `system_prompt.md` as the system instruction.
-2) Provide options:  
-   - `summary_level`: `short` or `detailed`  
-   - `evidence_mode`: `default` or `strict`  
-   - `audience`: `expert` or `lay`
-3) Expect outputs in this order: Paper Summary → Section Table → Expert/Lay Summaries → Mini-Glossary → Checks & Warnings.
+This project develops a structured summarizer for research papers, adhering to the PS2 specification.
 
-## Test Scenarios
-- **Short Section Warning:** If a method is less than 50 words, expect a message like “Section very short: summary may be incomplete.”
-- **Missing Section Warning:** If discussion is intentionally omitted, expect a message indicating the section was skipped and no usable text was provided.
-- **Strict Evidence Mode:** To verify the standard message appears even when details aren’t explicit, set `evidence_mode=strict`.
-- **Equation + Citation:** Detect the presence of the equation `$y = Wx + b$` and the citation `(Vaswani et al., 2017)`.
+Features:
+
+Provide a concise summary of each section, approximately 100–150 words. 
+Conclude with a comprehensive summary, no longer than 400 words.  
+Ensure summaries cater to both experts and laypersons.  
+Include a glossary of technical terms.  
+Implement checks and warnings for missing or incomplete sections.  Highlight key contributions, 
+identifying 3–5 significant points.
+Simplify equations and technical terms for clarity.
+Module Architecture
+
+Intake & Setup — Normalize sections, detect issues, and chunk text during intake and setup.
+Section Loop — Summarize each section, keeping in mind the PS2 constraints.
+Guardrails — Guardrails prevent hallucinations and enforce evidence rules.
+Rendering & Refinement — Rendering and refinement involve formatting outputs and ensuring clarity.
+Key Contributions Extractor — Key Contributions Extractor:  Highlight the main contributions.
+Equation & Technical Term Explainer — Simplify technical content with our Equation & Technical Term Explainer.
 
 
-The generated `system_prompt.md` and `/modules` meet the requirements of Set 1: PS2 specification, including explicitly quoted inputs, outputs, and constraints.  They also contain the necessary system-prompt components, such as a greeting, tone, input handling, boundary setting, and mandated output sections.  Furthermore, they include the four core modules, two student-created modules, a strict evidence guardrail with the exact standard message, standardized warnings for missing, empty, or under 50-word content, deterministic formatting, and a modular flow consistent with the described architecture.  Module 02 features a `summary_level` option with “short” and “detailed” (paragraphs plus 3–5 bullets).  Module 03 specifies `evidence_mode = “strict”` and the exact warning strings.
+Provide:
+
+Provide the full text of the paper (e.g., “Attention is All You Need”). Include section titles and boundaries. Specify the target audience (expert or lay). The system will return:
+
+Paper Summary
+Section-by-Section Summary Table
+Expert Summary
+Lay Summary
+Mini-Glossary
+Checks & Warnings
