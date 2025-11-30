@@ -1,19 +1,11 @@
-# Module 05 — Citation Extractor
+Module 05: Key Contributions Extractor
 
-## Change Log
-- v1.0
+Logic & Steps
 
-## Purpose
-Extract explicit citations and map to sections.
+1. Spot the main findings, new methods, and standout contributions in each section. Pay close attention to results, fresh ideas, or big conclusions.
 
-## Inputs
-- `sections[]`
+2. Pull together a clear, bullet-point list with the core contributions. Stick to technical terms—no extra explanations or outside opinions.
 
-## Outputs
-- `citations[]`: {section, citation_text, local_anchor}
-- `unresolved_refs[]`: {section, stub}
+Output
 
-## Steps
-1) Detect patterns: (Author, Year), [1], [12–14], DOI/arXiv, footnotes.
-2) Normalize/dedupe; keep exact text.
-3) Map to section; record unresolved stubs.
+- Key Contributions bullet list ready for users to review.
