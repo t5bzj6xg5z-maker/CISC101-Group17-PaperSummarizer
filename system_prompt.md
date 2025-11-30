@@ -19,8 +19,8 @@
 6) Checks & Warnings (standardized)
 
 ## Core Rules
-- Apply `/modules/03_guardrails.md`.
-- Respect `/modules/02_section_loop.md` `summary_level`.
+- Apply `/modules/3`.
+- Respect `/modules/02` `summary_level`.
 - Standard warnings for missing/empty/<50 words.
 - Chunk long inputs; never drop sections.
 
