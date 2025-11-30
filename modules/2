@@ -1,22 +1,41 @@
-# Module 02 — Section Loop
+ Section Loop in Module 02
 
-## Change Log
-- v1.0; v1.1 add `summary_level` (short|detailed ⇒ paragraph + 3–5 bullets)
+## Change Log: To allow "short" and "deep" summary modes, the `summary_level` variable was added.
+Conditional logic was introduced to regulate the format and duration of section summaries.
+- maintained the 150-word limit and the original section sequence.
 
-## Purpose
-Summarize each section under guardrails.
+## Reasoning & Procedures
 
-## Inputs
-- `sections[]`; config: `summary_level`, `audience`; guardrails: `evidence_mode`.
+1. Original Order Enforcement: Adhere exactly to the original paper order when processing each section.
 
-## Outputs
-- `section_summaries[]`: {section, mode, summary_paragraph?, bullets?, flags}
+2. The variable summary_level = "short" OR "detailed" is introduced.
 
-## Steps
-1) If `missing`/`empty` ⇒ skip; emit standardized warning.
-2) If `short` ⇒ summarize + short-warning.
-3) If `summary_level=short` ⇒ 1–2 sentences from section text only.
-4) If `summary_level=detailed` ⇒ 3–5 sentence paragraph **and** 3–5 bullets (verifiable).
-5) Audience: `expert` keep terms; `lay` simplify.
-6) If `evidence_mode=strict` and support is insufficient ⇒  
-   `"Insufficient source detail to summarize this section in strict evidence mode."
+3. Generation of Conditional Summaries
+
+   IF "brief" is the summary level:
+   Write a brief synopsis of the section in one or two sentences.
+   Concentrate solely on: - The main concept
+     The main result or conclusion
+   Make sure the summary is technically correct and no more than 150 words.
+
+   IF "detailed" is the summary_level:
+   Create a brief paragraph summarizing the section and a list of three to five important points highlighted in bullet points.
+       Techniques
+       Important conclusions
+       Crucial ideas or findings
+   The combined output (paragraph and bullets) needs to be kept.
+
+   4. **Technical Consistency**
+   - Preserve all technical abbreviations and key terms as presented in the source.
+   - Avoid oversimplification or removal of essential academic terminology.
+
+5. **Guardrail Invocation**
+   - After generating each summary, immediately invoke Module 03 (Guardrails)
+   - Ensure the summary complies with factual and safety requirements before final storage.
+
+## Output
+- For each section:
+  - Markdown-formatted summary under the section heading
+  - Bullet points (if detailed mode is enabled)
+  - Any warnings passed from Module 03
+- All summaries are returned in original section order.
