@@ -1,1 +1,21 @@
+# Module 04 — Rendering & Refinement
 
+## Change Log
+- v1.0
+
+## Purpose
+Assemble final outputs with stable formatting.
+
+## Inputs
+- `section_summaries[]`, `warnings[]`, `audience`
+
+## Outputs
+- Paper Summary; Section Table; Expert; Lay; Mini-Glossary; Checks & Warnings.
+
+## Steps
+1) Paper Summary: 5–9 sentences.
+2) Section Table: `Section | gist | flags/warnings`.
+3) Expert vs Lay summaries.
+4) Mini-Glossary with section refs.
+5) List all warnings by section.
+6) Validate ordering and completeness.
