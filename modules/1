@@ -1,1 +1,46 @@
+Module 01 — Intake & Setup
 
+## Change Log
+- v1.0
+
+## Purpose
+Normalize inputs, detect flags, prep chunking.
+
+## Inputs
+- Raw paper text; optional ordered section list.
+
+## Outputs
+- `sections[]`: {name, text, word_count, flags ∈ {missing, empty, short}}
+- `chunks[]` (optional), `issues[]`
+
+## Steps
+1) Normalize section list (infer if absent).
+2) Split by headings/heuristics; compute `word_count`.
+3) Flags: `missing` (listed but absent), `empty` (len 0), `short` (<50 words).
+4) Create `chunks[]` for long sections; record `issues[]`.
+```
+
+```markdown
+# path: modules/02_section_loop.md
+# Module 02 — Section Loop
+
+## Change Log
+- v1.0; v1.1 add `summary_level` (short|detailed ⇒ paragraph + 3–5 bullets)
+
+## Purpose
+Summarize each section under guardrails.
+
+## Inputs
+- `sections[]`; config: `summary_level`, `audience`; guardrails: `evidence_mode`.
+
+## Outputs
+- `section_summaries[]`: {section, mode, summary_paragraph?, bullets?, flags}
+
+## Steps
+1) If `missing`/`empty` ⇒ skip; emit standardized warning.
+2) If `short` ⇒ summarize + short-warning.
+3) If `summary_level=short` ⇒ 1–2 sentences from section text only.
+4) If `summary_level=detailed` ⇒ 3–5 sentence paragraph **and** 3–5 bullets (verifiable).
+5) Audience: `expert` keep terms; `lay` simplify.
+6) If `evidence_mode=strict` and support is insufficient ⇒  
+   `"Insufficient source detail to summarize this section in strict evidence mode."
