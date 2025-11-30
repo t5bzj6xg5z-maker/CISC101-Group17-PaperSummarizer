@@ -1,16 +1,9 @@
-# path: modules/06_equation_explainer.md
-# Module 06 — Equation Explainer
+Module 06: Equatoafvn Explainer
 
-## Change Log
-- v1.0
+Logic & Steps
+1. Find every equation, model, or formula across the whole document.
+2. For each key equation, explain what it does and why it matters, sticking to the context of the study. Keep it short, clear, and stick to what the text actually says—don’t guess or add extra meaning.
+3. Use the exact math symbols and terms from the original. Make sure every explanation is accurate and you can point back to its source in the paper.
 
-## Purpose
-Explain equations/symbols briefly and in context.
-
-## Inputs
-- `sections[]`, `audience`
-
-## Outputs
-- `equation_notes[]`: {section, symbol/equation, short explanation, refs}
-
-
+Output
+A list of the equations you found, each with a brief, plain-English explanation, all based directly on what’s in the paper.
