@@ -1,27 +1,41 @@
-# Module 03 — Guardrails
+Module 03: Guardrails
 
-## Change Log
-- v1.0; v1.1 add `evidence_mode=strict` + standardized warnings
+Change Log
+- Added an evidence_mode variable for stricter evidence requirements.
+- Set up standard warnings for missing, empty, or very short sections.
+- Improved logic to catch hallucinations.
 
-## Purpose
-Evidence control, warnings, long-paper handling.
+Logic & Steps
 
-## Inputs
-- Section records; `evidence_mode`.
+1. Evidence Mode Variable
+Set evidence_mode to either "standard" or "strict."
 
-## Outputs
-- Policies/helpers; `warnings[]`.
+2. Strict Evidence Mode
+When evidence_mode is "strict":
+- The summarizer sticks to facts found in the original section—no guesses, no outside info.
+- If there isn’t enough detail, just say:
+  "The source text does not provide enough detail to summarize this section in strict evidence mode."
 
-## Policies
-- **Evidence:**
-  - default: close to text; no speculation.
-  - **strict:** only explicit claims/results; else:  
-    `"Insufficient source detail to summarize this section in strict evidence mode."`
-- **Standardized warnings:**
-  - Missing/empty: `"Section skipped: no usable text was provided."`
-  - Short (<50 words): `"Section very short: summary may be incomplete."`
-- **Long papers:** deterministic chunking; keep provenance.
+3. Section Validation
 
-## Helpers
-- `apply_evidence_policy(text, mode)`
-- `emit_warning(section, type)`
+If the section is missing or empty:
+- Say:
+  "Section skipped: no usable text was provided."
+- Don’t try to summarize.
+
+If the section is under 50 words:
+- Go ahead and summarize, but add this warning:
+  "Section very short: summary may be incomplete."
+
+4. Blocking Hallucinations
+- Check that every summary only pulls from the original section.
+- Don’t add made-up facts, guesses, or outside sources.
+
+5. Enforcing Accuracy
+- Match each summary sentence to the original text.
+- Cut or change anything that doesn’t line up.
+
+Output
+- Only show summaries that pass these checks.
+- Add standard warning messages as needed.
+- If strict mode rules are broken, swap the summary with the proper explanation.
